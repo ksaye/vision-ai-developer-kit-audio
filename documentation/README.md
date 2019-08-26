@@ -3,6 +3,7 @@
 ## Overview
 
 This sample solution breaks down the audio processing into 5 phases:
+
 1 Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
 2 Label the audio files
 3 Building a Neural Network for processing audio files
@@ -12,6 +13,7 @@ This sample solution breaks down the audio processing into 5 phases:
 ## Assumptions
 
 This sample is focused on audio processing.  It is assumed that you already have an understanding and experience with:
+
 * [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/quickstart)
 * [Vision AI DevKit](https://azure.github.io/Vision-AI-DevKit-Pages/docs/Get_Started/)
 * [Python on Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
@@ -22,11 +24,13 @@ This sample is focused on audio processing.  It is assumed that you already have
 ## Sample Solution
 
 To build any Machine Learning Model, you need plenty of sample data.  Audio is no different.  For our example we will predict the water level of an 8 foot fountain, just by the sound.  Water is a common sound that most people can understand.  Think about a leaky faucet where drops of water go into an empty sink.  Then think about the same leaky faucet, but this time the sink is 1/2 full and then a full sink.  You can imagine the difference in sounds.  One is higher pitch, one is lower pitch with a more hollow sound.  This is the premise we will work from for our sample, but honestly it can be the comparison of any sound.  Consider:
+
 * a squeeking bearing on a motor.
 * the RPMs (revolutions per minute) of a vehicle.  
 * the suction sound of a vacuum pump
 
 Compare these 2 sounds from our fountain:
+
 * [Our fountain full](https://github.com/ksaye/IoTDemonstrations/blob/master/audioWave/201805211827-fountain.wav?raw=true)
 * [Our fountain 1/2 full](https://github.com/ksaye/IoTDemonstrations/blob/master/audioWave/201806151709-fountain%20(1550).wav?raw=true)
 
@@ -51,6 +55,7 @@ Building our Neural Network will be Diffusion-Convolutional Neural Network, base
 With the audio files labled and using Azure Machine Learning Service Workspace, we can built the model.  For larger data sets, we can use a GPU for model building which makes the process go much faster.
 
 Processing ~45K images using 2,000 epcochs with a batch size of 8 takes the following times on the following compute nodes in the Machine Learning Workspace:
+
 Compute SKU | Time to Process | Retail computers
 ----------- | --------------- | ----------------
 STANDARD_NC6 |  |
