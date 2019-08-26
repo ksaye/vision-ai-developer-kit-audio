@@ -4,11 +4,11 @@
 
 This sample solution breaks down the audio processing into 5 phases:
 
-1 Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
-2 Label the audio files
-3 Building a Neural Network for processing audio files
-4 Building the Azure IoT Edge modules for inferencing the audio sounds
-5 Deploying the modules to one or more VAI DevKits
+1. Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
+2. Label the audio files
+3. Building a Neural Network for processing audio files
+4. Building the Azure IoT Edge modules for inferencing the audio sounds
+5. Deploying the modules to one or more VAI DevKits
 
 ## Assumptions
 
