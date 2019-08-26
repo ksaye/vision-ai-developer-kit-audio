@@ -3,7 +3,6 @@
 ## Overview
 
 This sample solution breaks down the audio processing into 5 phases:
-
 1. Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
 2. Label the audio files
 3. Building a Neural Network for processing audio files
@@ -13,7 +12,6 @@ This sample solution breaks down the audio processing into 5 phases:
 ## Assumptions
 
 This sample is focused on audio processing.  It is assumed that you already have an understanding and experience with:
-
 * [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/quickstart)
 * [Vision AI DevKit](https://azure.github.io/Vision-AI-DevKit-Pages/docs/Get_Started/)
 * [Python on Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
@@ -23,14 +21,14 @@ This sample is focused on audio processing.  It is assumed that you already have
 
 ## Sample Solution
 
-To build any Machine Learning Model, you need plenty of sample data.  Audio is no different.  For our example we will predict the water level of an 8 foot fountain, just by the sound.  Water is a common sound that most people can understand.  Think about a leaky faucet where drops of water go into an empty sink.  Then think about the same leaky faucet, but this time the sink is 1/2 full and then a full sink.  You can imagine the difference in sounds.  One is higher pitch, one is lower pitch with a more hollow sound.  This is the premise we will work from for our sample, but honestly it can be the comparison of any sound.  Consider:
+To build any Machine Learning Model, you need plenty of sample data.  Audio is no different.  For our example we will predict the water level of an 8 foot fountain, just by the sound.  Water is a common sound that most people can understand.  Think about a leaky faucet where drops of water go into an empty sink.  Then think about the same leaky faucet, but this time the sink is 1/2 full and then a full sink.  You can imagine the difference in sounds.  One is higher pitch, one is lower pitch with a more hollow sound.  
 
+This is the premise we will work from for our sample, but honestly it can be the comparison of any sound.  Consider:
 * a squeeking bearing on a motor.
 * the RPMs (revolutions per minute) of a vehicle.  
 * the suction sound of a vacuum pump
 
 Compare these 2 sounds from our fountain:
-
 * [Our fountain full](https://github.com/ksaye/IoTDemonstrations/blob/master/audioWave/201805211827-fountain.wav?raw=true)
 * [Our fountain 1/2 full](https://github.com/ksaye/IoTDemonstrations/blob/master/audioWave/201806151709-fountain%20(1550).wav?raw=true)
 
@@ -44,7 +42,9 @@ You can find the DockerFile for audio aquisition approach in samples\1-audioAqui
 
 ## Labeling the audio files
 
-So far we just have a storage account with audio samples that do not have any label.  Because we aquired the sound files in such a seqential fashion, we can easily label the first 10% as '100% full', the next 10% as '90% full' and so on until we get to the last 10%.  Our labeling system is [100%, 90%, 80%, 70%, 60%, 50%, 40%, 30%, 20%, 10%], which means we have 10 'classes'.  To make this easy, we will rename each file from ############.WAV to ############-NNN.WAV, where -NNN is the label, such as -100 or -30.  As a best practice, I always leave the source data intact, so technically instaead of reanaming the files, I copy them from one container to anonther, renaming the file as I copy it.
+So far we just have a storage account with audio samples that do not have any label.  Because we aquired the sound files in such a seqential fashion, we can easily label the first 10% as '100% full', the next 10% as '90% full' and so on until we get to the last 10%.  Our labeling system is [100%, 90%, 80%, 70%, 60%, 50%, 40%, 30%, 20%, 10%], which means we have 10 'classes'.  
+
+To make this easy, we will rename each file from ############.WAV to ############-NNN.WAV, where -NNN is the label, such as -100 or -30.  As a best practice, I always leave the source data intact, so technically instaead of reanaming the files, I copy them from one container to anonther, renaming the file as I copy it.
 
 You can find the labeling script in samples\2-lableFiles
 
