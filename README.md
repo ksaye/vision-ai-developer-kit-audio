@@ -19,11 +19,11 @@ While audio is not the answer to all use cases, it can be used in many.  With yo
 
 ## Resources
 
-* [Github Repository](http://aka.ms/) - this site
+* [Github Repository](./) - this site
 * [Azure Subscription](http://portal.azure.com) -- We will use Azure IoT Edge and Azure Machine Learning Workspace in the sample
 * [Visual Studio Code](http://aka.ms/vscode) -- the IDE for this sample
 * [Audio Documentation](./documentation) - all documentation for using the VAI DevKit for audio processing
-* [Sample](http://aka.ms/) - a sample solution for audio processing on the VAI DevKit
+* [Sample](./samples) - a sample solution for audio processing on the VAI DevKit
 * [Qualcomm QCS603](https://www.qualcomm.com/products/vision-intelligence-300-platform) - learn more about the chipset powering the Vision AI Developer Kit hardware
 
 ## Get a kit
