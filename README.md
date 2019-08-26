@@ -15,11 +15,12 @@ Audio, using just a microphone, is a much more cost effective approach for lots 
 * Full 360° coverage
 * No dependency on light
 
-While audio is not the answer to all use cases, it can be used in many.  With your eyes closed, listen to all the sounds around you and think about how you were "trained" to recognized the sound.
+While audio is not the answer to all use cases, it can be used in many.  With your eyes closed, listen to all the sounds around you and think about how you were "trained" to recognize the sound.
 
 ## Resources
 
 * [Github Repository](http://aka.ms/) - this site
+* [Visual Studio Code](http://aka.ms/vscode) -- the IDE for this sample
 * [Audio Documentation](http://aka.ms/) - all documentation for using the VAI DevKit for audio processing
 * [Sample](http://aka.ms/) - a sample solution for audio processing on the VAI DevKit
 * [Qualcomm QCS603](https://www.qualcomm.com/products/vision-intelligence-300-platform) - learn more about the chipset powering the Vision AI Developer Kit hardware
