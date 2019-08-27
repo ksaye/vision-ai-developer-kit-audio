@@ -13,7 +13,7 @@ Modify the audioAquisition.py file for the following settings.
 Setting | Example | Notes
 ------- | ------- | --------
 azureStorgeAccountName | 'myaudiostorgeaccount' | the name of your Azure Blob Storge Account
-azureStorageKeyName | 'dMCtO9kF4uokBW1PaF30CfKg/Ig81GFpyVDIKcUIemQl1l++cWjChghiRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
+azureStorageKeyName | 'dMCtRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
 azureStorageContainer | 'newfountain' | the Blob container in the storage account.  it will be created if it does not exist
 fileStorageLocation | '/' | where to save the .WAV files in the container
 sampleStartHour | 17 | what hour to start sampling in the day.  to sample all the time, set the value to 0
