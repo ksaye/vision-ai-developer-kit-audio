@@ -1,0 +1,17 @@
+# this container must be created with the settings:  --privileged, which allows the container access to /dev 
+# example:      docker build . --tag audio
+#               docker create --privileged --name audio audio
+#               docker run audio
+
+FROM arm32v7/ubuntu:latest
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y alsa-utils tzdata vim python-pip python
+RUN pip install wheel && pip install azure-storage
+# setting the timezone to Central / Chicago
+RUN ln -fs /usr/share/zoneinfo/America/Chicago /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata
+
+COPY . .
+
+CMD python -u ./audioAquisition.py
