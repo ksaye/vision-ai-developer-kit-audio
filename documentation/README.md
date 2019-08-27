@@ -56,10 +56,11 @@ With the audio files labled and using Azure Machine Learning Service Workspace, 
 
 Processing ~45K images using 2,000 epcochs with a batch size of 8 takes the following times on the following compute nodes in the Machine Learning Workspace:
 
-Compute SKU | Time to Process | Retail computers
+Compute SKU | Time to Process | Retail price
 ----------- | --------------- | ----------------
-STANDARD_NC6 |  |
-STANDARD_D2_V2 |  |
+Standard_D2_V2 |  |
+Standard_D14 |  |
+Standard_NC6 |  |
 
 You can find the Build Network script in samples\3-buildNetworkWithAzure
 
