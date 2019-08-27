@@ -32,7 +32,7 @@ In 3-buildNetworkWithAzure\run.py make the following modification
 Setting | Example | Notes
 ------- | ------- | --------
 azureStorgeAccountName | 'myaudiostorgeaccount' | the name of your Azure Blob Storge Account.  it must match the setting used in 1-audioAquisition
-azureStorageKeyName | 'dMCtO9kF4uokBW1PaF30CfKg/Ig81GFpyVDIKcUIemQl1l++cWjChghiRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
+azureStorageKeyName | 'dMCtO9kFRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
 azureStorageContainer | 'completedmodel' | the name of the Azure Storage Blob container for the trained model (zip file)
 
 ## Running the script
