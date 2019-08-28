@@ -3,11 +3,11 @@
 ## Overview
 
 This sample solution breaks down the audio processing into 5 phases:
-1. Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
-2. Label the audio files
-3. Building a Neural Network for processing audio files
-4. Building the Azure IoT Edge modules for inferencing the audio sounds
-5. Deploying the modules to one or more VAI DevKits
+1 Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
+2 Label the audio files
+3 Building a Neural Network for processing audio files
+4 Building the Azure IoT Edge modules for inferencing the audio sounds
+5 Deploying the modules to one or more VAI DevKits
 
 ## Assumptions
 
@@ -21,9 +21,7 @@ This sample is focused on audio processing.  It is assumed that you already have
 
 ## Sample Solution
 
-To build any Machine Learning Model, you need plenty of sample data.  Audio is no different.  For our example we will predict the water level of an 8 foot fountain, just by the sound.  Water is a common sound that most people can understand.  Think about a leaky faucet where drops of water go into an empty sink.  Then think about the same leaky faucet, but this time the sink is 1/2 full and then a full sink.  You can imagine the difference in sounds.  One is higher pitch, one is lower pitch with a more hollow sound.  
-
-This is the premise we will work from for our sample, but honestly it can be the comparison of any sound.  Consider:
+To build any Machine Learning Model, you need plenty of sample data.  Audio is no different.  For our example we will predict the water level of an 8 foot fountain, just by the sound.  Water is a common sound that most people can understand.  Think about a leaky faucet where drops of water go into an empty sink.  Then think about the same leaky faucet, but this time the sink is 1/2 full and then a full sink.  You can imagine the difference in sounds.  One is higher pitch, one is lower pitch with a more hollow sound.  This is the premise we will work from for our sample, but honestly it can be the comparison of any sound.  Consider:
 * a squeeking bearing on a motor.
 * the RPMs (revolutions per minute) of a vehicle.  
 * the suction sound of a vacuum pump
@@ -42,9 +40,7 @@ You can find the DockerFile for audio aquisition approach in samples\1-audioAqui
 
 ## Labeling the audio files
 
-So far we just have a storage account with audio samples that do not have any label.  Because we aquired the sound files in such a seqential fashion, we can easily label the first 10% as '100% full', the next 10% as '90% full' and so on until we get to the last 10%.  Our labeling system is [100%, 90%, 80%, 70%, 60%, 50%, 40%, 30%, 20%, 10%], which means we have 10 'classes'.  
-
-To make this easy, we will rename each file from ############.WAV to ############-NNN.WAV, where -NNN is the label, such as -100 or -30.  As a best practice, I always leave the source data intact, so technically instaead of reanaming the files, I copy them from one container to anonther, renaming the file as I copy it.
+So far we just have a storage account with audio samples that do not have any label.  Because we aquired the sound files in such a seqential fashion, we can easily label the first 10% as '100% full', the next 10% as '90% full' and so on until we get to the last 10%.  Our labeling system is [100%, 90%, 80%, 70%, 60%, 50%, 40%, 30%, 20%, 10%], which means we have 10 'classes'.  To make this easy, we will rename each file from ############.WAV to ############-NNN.WAV, where -NNN is the label, such as -100 or -30.  As a best practice, I always leave the source data intact, so technically instead of reanaming the files, I copy them from one container to anonther, renaming the file as I copy it.
 
 You can find the labeling script in samples\2-lableFiles
 
@@ -52,15 +48,16 @@ You can find the labeling script in samples\2-lableFiles
 
 Building our Neural Network will be Diffusion-Convolutional Neural Network, based on the work of [Xianshun Chen](https://github.com/chen0040) shared [here](https://github.com/chen0040/keras-audio).  Here we will use Keras-Audio, and a few supporting Python libraries to build the model.
 
-With the audio files labled and using Azure Machine Learning Service Workspace, we can built the model.  For larger data sets, we can use a GPU for model building which makes the process go much faster.
+With the audio files labled and using Azure Machine Learning Service Workspace, we can built the model.  For larger data sets, we can use a GPU for model building which makes the process go much faster.  For this sample, and leveraging the power of Azure, I performed distributed training using 4 nodes using different sized host.
 
-Processing ~45K images using 2,000 epcochs with a batch size of 8 takes the following times on the following compute nodes in the Machine Learning Workspace:
+Processing ~3.6K images using 2,000 epcochs with a batch size of 8 and with the melspectrograms already calculated takes the following times:
 
-Compute SKU | Time to Process | Retail price
------------ | --------------- | ----------------
-Standard_D2_V2 |  |
-Standard_D14 |  |
-Standard_NC6 |  |
+Compute SKU | Nodes | Accuracy | Time to Process | Retail Cost
+----------- | ----- | -------- | --------------- | ------------
+STANDARD_D2 | 1 | x | time | cost
+STANDARD_D2 | 4 | x | time | cost
+STANDARD_D14 | 4 | x | time | cost
+STANDARD_NC6 | 4 | x | time | cost
 
 You can find the Build Network script in samples\3-buildNetworkWithAzure
 
