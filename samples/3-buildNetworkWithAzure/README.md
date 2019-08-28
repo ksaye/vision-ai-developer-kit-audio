@@ -16,23 +16,25 @@ In 3-buildNetworkWithAzure\buildNetworkWithAzure.py make the following modificat
 
 Setting | Example | Notes
 ------- | ------- | --------
-azureSubscriptionID | 'dc6f779246722' | the azure Subscription ID
+azureSubscriptionID | 'dc6f773e-4b13-4f8b-8d76-f34469246722' | the azure Subscription ID
 azureResourceGroup | 'audioRG' | the resource group to create the WorkSpace
 azureMLWorkSpaceName | 'audioWorkSpace' | the Azure Machine Learning Workspace name
 azureMLWorkSpaceLocation | "South Central US" | the Region for the Azure Machine Learning Workspace
 azureMLClusterName | "cluster3" | the name of the compute cluster
 azureMLVMSize | 'Standard_D14' | the SKU or size of the compute VMs
+azureMLMaxNodes | 4 | the max number of nodes to use
 experiment_name | 'KerasAudioExperiment' | the name of the experiment
 azureStorgeAccountName | 'myaudiostorgeaccount' | the name of your Azure Blob Storge Account.  it must match the setting used in 1-audioAquisition
-azureStorageKeyName | 'dMCtghiRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
-azureStorageTargetContainer | 'newfolder' | the target Blob container.  it must match the setting used in 2-labelFiles
+azureStorageKeyName | 'dMCtO9iRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
+azureStorageTargetContainer | 'newfolder5' | the target Blob container.  it must match the setting used in 2-labelFiles
+
 
 In 3-buildNetworkWithAzure\run.py make the following modification
 
 Setting | Example | Notes
 ------- | ------- | --------
 azureStorgeAccountName | 'myaudiostorgeaccount' | the name of your Azure Blob Storge Account.  it must match the setting used in 1-audioAquisition
-azureStorageKeyName | 'dMCtO9kFRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
+azureStorageKeyName | 'dMCtO9kRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
 azureStorageContainer | 'completedmodel' | the name of the Azure Storage Blob container for the trained model (zip file)
 
 ## Running the script

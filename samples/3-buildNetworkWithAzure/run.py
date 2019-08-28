@@ -3,18 +3,22 @@ import sys
 import shutil
 import argparse
 
+# for production stuff, consider the custom container images mentioned in buildNetworkWithAzure.py
+#os.system('rm -rd keras-audio')
+#os.system('rm -rd model')
 os.system('apt update && apt-get install -y python python-dev python-pip build-essential swig git libpulse-dev libasound2-dev portaudio19-dev')
-os.system('git clone https://github.com/chen0040/keras-audio.git')
-os.system('cp -r keras-audio/keras_audio .')
-os.system('mkdir model')
+#os.system('git clone https://github.com/chen0040/keras-audio.git')
+#os.system('cp -r keras-audio/keras_audio .')
+#os.system('mkdir model')
 
 sys.path.append('.')
 from azure.storage.blob import BlockBlobService
 from keras_audio.library.cifar10 import Cifar10AudioClassifier
 
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = 'dMCtO9WjChghiRc7OGw=='
-azureStorageContainer = 'completedmodel'
+azureStorageKeyName = '8H5YxVXvHgxiA=='
+azureStorageContainer = 'completedmodel2'
+labels = [100,90,80,70,60,50,40,30,20,10]
 parser = argparse.ArgumentParser()
 parser.add_argument("--data_dir")
 args = parser.parse_args()
@@ -24,11 +28,10 @@ def load_path_labels(sourcePath):
     pairs = []
     for f in os.listdir(sourcePath):
         try:
-            if f.split('.')[1] == 'wav':                           # only process wav files
-                label = f.split('.')[0].split('-')[1]
+            if str(f.split('.')[1]).lower() == 'wav':          # only process wav files
+                label = int(f.split('.')[0].split('-')[1])
                 path = sourcePath + '/' + f
-                lableCounter = (int(label)/10) - 1
-                pairs.append((path, lableCounter))
+                pairs.append((path, labels.index(label)))
         except:
             print('error with: ' + str(f))
     return pairs
