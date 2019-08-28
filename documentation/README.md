@@ -53,12 +53,13 @@ With the audio files labled and using Azure Machine Learning Service Workspace, 
 
 Processing ~3.6K images using 50 epcochs with a batch size of 8 and with the melspectrograms already calculated takes the following times:
 
-Compute SKU | Nodes | Accuracy | Time to Process | Retail Cost
+Compute SKU | Nodes | val_acc | Time to Process | [Azure Calculator Cost](https://azure.microsoft.com/en-us/pricing/calculator/)
 ----------- | ----- | -------- | --------------- | ------------
-STANDARD_D2 | 1 | x | time | cost
-STANDARD_D2 | 4 | x | time | cost
-STANDARD_D14 | 4 | x | time | cost
-STANDARD_NC6 | 4 | x | time | cost
+STANDARD_D2 | 1 | x | time | $.11 per hour * = 
+STANDARD_D2 | 4 | x | time | 4 x $.11 per hour * = 
+STANDARD_D14 | 4 | x | time | 4 x $1.33 per hour * = 
+STANDARD_NC6 | 1 | x | time | $2.46 per hour * = 
+STANDARD_NC6 | 4 | 0.9472 | 23m 32.87s | 4 x $2.46 per hour x .39 = $3.85
 
 You can find the Build Network script in samples\3-buildNetworkWithAzure
 
