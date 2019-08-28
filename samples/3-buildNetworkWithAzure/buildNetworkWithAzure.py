@@ -17,7 +17,7 @@ from azureml.core.environment import CondaDependencies
 from azureml.core.runconfig import DataReferenceConfiguration, RunConfiguration
 
 # change these variables as needed
-azureSubscriptionID = 'dc6f773e-4b13-4f8b-8d76-f34469246722'
+azureSubscriptionID = 'dc69246722'
 azureResourceGroup = 'audioRG'
 azureMLWorkSpaceName = 'audioWorkSpace'
 azureMLWorkSpaceLocation = "South Central US"
@@ -25,7 +25,7 @@ azureMLClusterName = "cluster3"
 azureMLVMSize = 'Standard_D14'
 experiment_name = 'KerasAudioExperiment'
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = 'dMCtO9kFJ7u0VJq6638ZY4uokBW1PaF30CfKg/Ig81GFpyVDIlhELYWz6XaAKcUIemQl1l++cWjChghiRc7OGw=='
+azureStorageKeyName = 'dMCtO9kFJ7hiRc7OGw=='
 azureStorageTargetContainer = 'newfolder5'
 # end of change section
 
