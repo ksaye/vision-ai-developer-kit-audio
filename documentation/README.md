@@ -3,17 +3,18 @@
 ## Overview
 
 This sample solution breaks down the audio processing into 5 phases:
-1 Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone
-2 Label the audio files
-3 Building a Neural Network for processing audio files
+1 Audio file aquisition from the Vision AI Developer Kit (VAI DevKit) microphone to Azure Storage
+2 Label a copy of the audio files in Azure Storage
+3 Building a Neural Network for processing audio files using Azure Machine Learning Workspace
 4 Building the Azure IoT Edge modules for inferencing the audio sounds
-5 Deploying the modules to one or more VAI DevKits
+5 Deploying the modules to Azure IoT Edge
 
 ## Assumptions
 
 This sample is focused on audio processing.  It is assumed that you already have an understanding and experience with:
 * [Azure IoT Edge](https://docs.microsoft.com/en-us/azure/iot-edge/quickstart)
 * [Vision AI DevKit](https://azure.github.io/Vision-AI-DevKit-Pages/docs/Get_Started/)
+* [Docker Desktop](http://www.docker.com)
 * [Python on Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
 * [Azure Machine Learning Service](https://docs.microsoft.com/en-us/azure/machine-learning/service/)
 * [Basic understanding of Machine Learning](https://en.wikipedia.org/wiki/Machine_learning)
@@ -34,7 +35,7 @@ With your eyes closed, you can hear the difference.  Perhaps you can't explain t
 
 ## Audio File Aquisition
 
-To build our model, we need LOTS of samples and we need to label them appropriately.  For the best results, we need to sample the images on the same hardware (microphone) that we will be inferencing with.  For our sample solution, audio file aquisition was simple, just record enough sounds from the VAI DevKit with the fountain full, and then record with the fountain 1/2 full, then empty.  To make this more elegant, I actually recorded sound for a month straight.  Imaging on the first day of the month, the fountain is full and for the next 30 days we sample 100s of sounds per day up to the end of the month or when ever the fountain is verified to be empty.  Using this approach I captured 44,566 15-second wave files for a total of over 50 GB in files.  Why so many sound samples?  This fountain is inside a house.  Imagine a dog barking, the doorbell ringing a person laughing.  Many distractions, so we let the sheer number of audio files overcome these anomalities.  For our sample, WAV files are the format that include the needed fidelity which allow us to extract the needed features.  With so many samples and assuming even evaporation of the water, we can now determine how full the fountain is.  For this sample, we determine by percent from 100%, 90%, 80% and so on. 
+To build our model, we need LOTS of samples and we need to label them appropriately.  For the best results, we need to sample the images on the same hardware (microphone) that we will be inferencing with.  For our sample solution, audio file aquisition was simple, just record enough sounds from the VAI DevKit with the fountain full, and then record with the fountain 1/2 full, then empty.  To make this more elegant, I actually recorded sound for a month straight.  Imaging on the first day of the month, the fountain is full and for the next 30 days we sample 100s of sounds per day up to the end of the month or when ever the fountain is verified to be empty.  Using this approach I captured 3,600 15-second wave files for a total of over 9 GB in files -- and I consider this a bare minimimum.  Why so many sound samples?  This fountain is inside a house.  Imagine a dog barking, the doorbell ringing, the radio playing or a person laughing.  Many distractions, so we let the sheer number of audio files overcome these anomalities.  For our sample, WAV files are the format that include the needed fidelity which allow us to extract the needed features.  With so many samples and assuming even evaporation of the water, we can now determine how full the fountain is.  For this sample, we determine by percent from 100%, 90%, 80% and so on. 
 
 You can find the DockerFile for audio aquisition approach in samples\1-audioAquisition.  Simply stated, it runs a loop during defined hours to collect 15 second wav files and uploads these to an Azure Blob storage for later processing.
 
@@ -50,7 +51,7 @@ Building our Neural Network will be Diffusion-Convolutional Neural Network, base
 
 With the audio files labled and using Azure Machine Learning Service Workspace, we can built the model.  For larger data sets, we can use a GPU for model building which makes the process go much faster.  For this sample, and leveraging the power of Azure, I performed distributed training using 4 nodes using different sized host.
 
-Processing ~3.6K images using 2,000 epcochs with a batch size of 8 and with the melspectrograms already calculated takes the following times:
+Processing ~3.6K images using 50 epcochs with a batch size of 8 and with the melspectrograms already calculated takes the following times:
 
 Compute SKU | Nodes | Accuracy | Time to Process | Retail Cost
 ----------- | ----- | -------- | --------------- | ------------
@@ -63,7 +64,7 @@ You can find the Build Network script in samples\3-buildNetworkWithAzure
 
 ## Build the Azure IoT Edge Modules
 
-Now that we have the network built, which consist of 5 files, we can build and push our two Azure IoT Edge Modules, one for aquiring the WAV file, one for inferencing the file.
+Now that we have the neural network built, which consist of 5 files, we can build and push our two Azure IoT Edge Modules, one for aquiring the WAV file, one for inferencing the file.
 
 You can find the Build Edge Modules script in samples\4-buildEdgeModules
 
