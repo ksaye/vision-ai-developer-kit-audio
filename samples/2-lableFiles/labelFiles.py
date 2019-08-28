@@ -3,7 +3,7 @@ from azure.storage.blob import BlockBlobService
 
 # change these variables as needed
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = 'dMCtO9kFJ7u0VJq6638ZY4uokBW1PaF30CfKg/Ig81GFpyVDIlhELYWz6XaAKcUIemQl1l++cWjChghiRc7OGw=='
+azureStorageKeyName = 'dMCtO9kFJhiRc7OGw=='
 azureStorageSourceContainer = 'fountain'
 azureStorageTargetContainer = 'newfolder5'
 emptyTargetContainer = True
