@@ -55,7 +55,7 @@ Processing ~3.6K images using 50 epcochs with a batch size of 8 and with the mel
 
 Compute SKU | val_acc | Time to Process | [Azure Calculator Cost](https://azure.microsoft.com/en-us/pricing/calculator/)
 ----------- | -------- | --------------- | ------------
-[STANDARD_D2](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-previous-gen#older-generations-of-virtual-machine-sizes) | 0.9485 | 21h 26m 42.59s | $.11 per hour 21.71 = **$2.38**
+[STANDARD_D2](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-previous-gen#older-generations-of-virtual-machine-sizes) | 0.9485 | 21h 26m 42.59s | $.11 per hour x 21.71 = **$2.38**
 [STANDARD_D14](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-previous-gen#older-generations-of-virtual-machine-sizes) | 0.9446 | 5h 13m 31.44s | $1.33 per hour x 5.225 = **$6.95**
 [STANDARD_NC6](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu#nc-series) | 0.9446 | 21m 20.96s | $2.46 per hour x .35 = **$0.87**
 
