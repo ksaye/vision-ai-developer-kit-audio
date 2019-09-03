@@ -11,7 +11,7 @@ In 2-labelFiles\labelFiles.py make the following modification
 Setting | Example | Notes
 ------- | ------- | --------
 azureStorgeAccountName | 'myaudiostorgeaccount' | the name of your Azure Blob Storge Account.  it must match the setting used in 1-audioAquisition
-azureStorageKeyName | 'dMCtO97OGw==' | the primary or secondary key of your Azure Blob Storage Account
+azureStorageKeyName | 'dMCtO9kRc7OGw==' | the primary or secondary key of your Azure Blob Storage Account
 azureStorageSourceContainer | 'newfountain' | the source Blob container in the storage account.  it must match the setting used in 1-audioAquisition
 azureStorageTargetContainer | 'newfolder5' | the target Blob container
 emptyTargetContainer | True | should all files in the target container be deleted

@@ -3,9 +3,9 @@ from azure.storage.blob import BlockBlobService
 
 # change these variables as needed
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = 'dMCtO9kFJhiRc7OGw=='
-azureStorageSourceContainer = 'fountain'
-azureStorageTargetContainer = 'newfolder5'
+azureStorageKeyName = '8H5YxVREMOVEDHgxiA=='
+azureStorageSourceContainer = 'fountainsample'
+azureStorageTargetContainer = 'newfolder3'
 emptyTargetContainer = True
 labels = [100,90,80,70,60,50,40,30,20,10]
 # end of change section
