@@ -4,7 +4,7 @@ from azure.storage.blob import BlockBlobService
 
 # change these variables as needed
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = 'dMCtO9kFWjChghiRc7OGw=='
+azureStorageKeyName = 'dMCtREMOVEDiRc7OGw=='
 azureStorageContainer = 'kevindemo'
 fileStorageLocation = '/'
 sampleStartHour = 0
