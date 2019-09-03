@@ -11,6 +11,7 @@ While this is much simpler with Visual Studio Code and the IoT Edge Extension, t
 1. You have already pushed Azure IOT Edge and modules the the VAI DevKit
 2. You have an existing Azure IoT Hub
 
+
 ## Configuring the script
 
 In 5-deployEdgeModules\deployToEdge.py make the following modification:

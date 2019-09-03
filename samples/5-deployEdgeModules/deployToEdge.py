@@ -6,7 +6,7 @@ azureIoTHubDeviceName = 'visionaidkit'
 azureSubscriptionID = 'dc6f773e-4b13-4f8b-8d76-f34469246722'
 ContainerRegistryName = 'kevinsay.azurecr.io'
 ContainerRegistryUserName = 'kevinsay'
-ContainerRegistryPassword = 'HN11kh8fB'
+ContainerRegistryPassword = 'HN11iwBez+uOe0oy8iSNgFMMcJ4kh8fB'
 # end of change section
 
 file = open('./deployment.json')
