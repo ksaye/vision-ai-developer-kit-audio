@@ -33,6 +33,10 @@ Compare these 2 sounds from our fountain:
 
 With your eyes closed, you can hear the difference.  Perhaps you can't explain the difference in words, but that is where programs and computers come in.
 
+Our solution follows the following steps:
+
+![alt text](https://github.com/ksaye/vision-ai-developer-kit-audio/blob/master/documentation/process.png "Process")
+
 ## Audio File Aquisition
 
 To build our model, we need LOTS of samples and we need to label them appropriately.  For the best results, we need to sample the images on the same hardware (microphone) that we will be inferencing with.  For our sample solution, audio file aquisition was simple, just record enough sounds from the VAI DevKit with the fountain full, and then record with the fountain 1/2 full, then empty.  To make this more elegant, I actually recorded sound for a month straight.  Imaging on the first day of the month, the fountain is full and for the next 30 days we sample 100s of sounds per day up to the end of the month or when ever the fountain is verified to be empty.  Using this approach I captured 3,600 15-second wave files for a total of over 9 GB in files -- and I consider this a bare minimimum.  Why so many sound samples?  This fountain is inside a house.  Imagine a dog barking, the doorbell ringing, the radio playing or a person laughing.  Many distractions, so we let the sheer number of audio files overcome these anomalities.  For our sample, WAV files are the format that include the needed fidelity which allow us to extract the needed features.  With so many samples and assuming even evaporation of the water, we can now determine how full the fountain is.  For this sample, we determine by percent from 100%, 90%, 80% and so on. 
