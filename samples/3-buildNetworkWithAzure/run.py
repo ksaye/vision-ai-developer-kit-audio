@@ -1,4 +1,5 @@
 import os
+import time
 import sys
 import shutil
 import argparse
@@ -16,7 +17,7 @@ from azure.storage.blob import BlockBlobService
 from keras_audio.library.cifar10 import Cifar10AudioClassifier
 
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = '8H5YxVXvHgxiA=='
+azureStorageKeyName = '8H5YxVfx5ZGbepjPQ+BZDdygOQAPB4S+a+vQobYD+3Q9h/U0xLEkOkDLu7/Xz3GNeq91Yj4h8JhoHvaXvHgxiA=='
 azureStorageContainer = 'completedmodel2'
 labels = [100,90,80,70,60,50,40,30,20,10]
 parser = argparse.ArgumentParser()
@@ -35,7 +36,7 @@ def load_path_labels(sourcePath):
         except:
             print('error with: ' + str(f))
     return pairs
- 
+
 def main():
     block_blob_service = BlockBlobService(account_name=azureStorgeAccountName, account_key=azureStorageKeyName)
     if (block_blob_service.exists(container_name=azureStorageContainer) == False):
@@ -46,12 +47,15 @@ def main():
  
     classifier = Cifar10AudioClassifier()
     batch_size = 8
-    epochs = 20000
+    epochs = 50
     classifier.fit(audio_path_label_pairs=audio_path_label_pairs, model_dir_path='model', batch_size=batch_size, epochs=epochs)
 
     #zipping and uploading the compiled model to blob storage
-    shutil.make_archive(base_name='model.zip', format='zip', base_dir='model')
-    block_blob_service.create_blob_from_path(azureStorageContainer, 'model.zip', 'model.zip')
+    shutil.make_archive(base_name='model', format='zip', base_dir='model')
+    block_blob_service.create_blob_from_path(azureStorageContainer, str(int(time.time() * 1000)) + 'model.zip', 'model.zip')
+
+    # copying the model contents to the output directory
+    os.system('cp -r ./model outputs')
  
 if __name__ == '__main__':
     main()

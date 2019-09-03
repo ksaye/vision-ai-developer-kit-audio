@@ -3,6 +3,8 @@
 import os
 import sys
 import shutil
+import datetime
+import time
 import azureml
 import azureml.core
 from azureml.core import Workspace
@@ -11,26 +13,26 @@ from azureml.core.container_registry import ContainerRegistry
 from azureml.core.compute import ComputeTarget, AmlCompute
 from azureml.core.compute_target import ComputeTargetException
 from azureml.core.datastore import Datastore
-from azureml.core.runconfig import DataReferenceConfiguration, MpiConfiguration
+from azureml.core.runconfig import DataReferenceConfiguration, MpiConfiguration, TensorflowConfiguration
 from azureml.train.dnn import TensorFlow
 
 # change these variables as needed
-azureSubscriptionID = 'dc6f773e-4b13-4f8b-8d76-f34469246722'
+azureSubscriptionID = 'dc6f7REMOVED46722'
 azureResourceGroup = 'audioRG'
 azureMLWorkSpaceName = 'audioWorkSpace'
 azureMLWorkSpaceLocation = "South Central US"
-azureMLClusterName = "cluster"
+azureMLClusterName = "cluster3"
 azureMLVMSize = 'Standard_NC6' # consider 'Standard_D2', 'Standard_NC6' or 'STANDARD_D14'
-azureMLMazNodes = 4
+azureMLMazNodes = 1
 experiment_name = 'KerasAudioExperiment'
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = '8H5YxVfxaXvHgxiA=='
-azureStorageTargetContainer = 'newfolder3'
+azureStorageKeyName = '8H5YxVfREMOVEDvaXvHgxiA=='
+azureStorageTargetContainer = 'newfolder'
 # end of change section
 
 # if we don't have a workspace, authenticate the user and create one
 if azureMLWorkSpaceName not in Workspace.list(subscription_id=azureSubscriptionID):
-    ws=Workspace.create(subscription_id=azureSubscriptionID, resource_group=azureResourceGroup, name=azureMLWorkSpaceName, location=azureMLWorkSpaceLocation, )
+    ws=Workspace.create(subscription_id=azureSubscriptionID, resource_group=azureResourceGroup, name=azureMLWorkSpaceName, location=azureMLWorkSpaceLocation)
 else:
     ws=Workspace.get(azureMLWorkSpaceName, subscription_id=azureSubscriptionID)
 
@@ -53,7 +55,8 @@ try:
     print('using existing computer cluster: ' + azureMLClusterName)
 except ComputeTargetException:
     print('Creating a new compute target: ' + azureMLClusterName)
-    compute_config = AmlCompute.provisioning_configuration(vm_size=azureMLVMSize, max_nodes=azureMLMazNodes, idle_seconds_before_scaledown=600)
+    compute_config = AmlCompute.provisioning_configuration(vm_size=azureMLVMSize, vm_priority='lowpriority', max_nodes=azureMLMazNodes, 
+        idle_seconds_before_scaledown=600, admin_username=azureMLClusterName[:8].lower(), admin_user_password=azureStorageKeyName[:20])
     compute_target = ComputeTarget.create(workspace=ws, name=azureMLClusterName, provisioning_configuration=compute_config)
     compute_target.wait_for_completion(show_output=True, timeout_in_minutes=20)
 
@@ -79,8 +82,12 @@ run = exp.submit(est)
 
 run.wait_for_completion(show_output=True)
 
+model = run.register_model(model_name=experiment_name, 
+                            model_path='outputs/model',
+                            description=experiment_name + ' built on ' + str(azureMLMazNodes) + ' nodes of ' + azureMLVMSize + ' from ' + azureStorgeAccountName + '/' + azureStorageTargetContainer)
+
 # downloading the files for the build step or pull it from the Azure Blob Storage
-run.download_file(name='model/cifar10-architecture.json', output_file_path ='../4-buildEdgeModules/model')
-run.download_file(name='model/cifar10-config.npy', output_file_path ='../4-buildEdgeModules/model')
-run.download_file(name='model/cifar10-history.npy', output_file_path ='../4-buildEdgeModules/model')
-run.download_file(name='model/cifar10-weights.h5', output_file_path ='../4-buildEdgeModules/model')
+run.download_file(name='outputs/model/cifar10-architecture.json', output_file_path ='../4-buildEdgeModules/audioinference/models/cifar10-architecture.json')
+run.download_file(name='outputs/model/cifar10-config.npy', output_file_path ='../4-buildEdgeModules/audioinference/models/cifar10-config.npy')
+run.download_file(name='outputs/model/cifar10-history.npy', output_file_path ='../4-buildEdgeModules/audioinference/models/cifar10-history.npy')
+run.download_file(name='outputs/model/cifar10-weights.h5', output_file_path ='../4-buildEdgeModules/audioinference/models/cifar10-weights.h5')
