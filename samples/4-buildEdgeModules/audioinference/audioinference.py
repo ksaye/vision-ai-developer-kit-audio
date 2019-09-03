@@ -1,8 +1,8 @@
-import os, sys, json, cgi, io, time
+import os, sys, time, json
 from datetime import datetime
+sys.path.append('.')
 from keras_audio.library.cifar10 import Cifar10AudioClassifier  
 from flask import Flask, request
-from PIL import Image
 from keras import backend as K
 
 port=8080
@@ -32,7 +32,6 @@ def index():
     return responseJSON
 
 def processFile(filename):
-    start = datetime.now()
     classifier = Cifar10AudioClassifier()
     classifier.load_model(model_dir_path='./models')
     predicted_label_id = classifier.predict_class(filename)

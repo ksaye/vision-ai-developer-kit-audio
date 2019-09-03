@@ -1,0 +1,33 @@
+# tensorflow on arm is a challenge.  Because of this, www.piwheels.org offers it but only for raspbain/stretch, which has Python 3.5
+FROM raspbian/stretch
+#FROM arm32v7/ubuntu:18.04
+
+RUN apt-get update \
+    && apt-get install -y \
+    libboost-python-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    liblapack-dev \
+    libblas-dev \
+    gfortran \
+    python3.5 \
+    llvm-dev \
+    python3-pip \
+    wget \
+    inetutils-traceroute \
+    net-tools \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools wheel 
+
+RUN pip3 install --index-url=https://www.piwheels.org/simple lru-dict numpy==1.16.1 keras==2.2.4 tensorflow==1.12.0 requests==2.20.0 flask==1.0.2 pillow==6.0.0
+
+# copy all files
+COPY . .
+
+# this module exposes a port that audiocapture calls
+EXPOSE 8080/tcp
+
+CMD python3 -u ./audioinference.py
