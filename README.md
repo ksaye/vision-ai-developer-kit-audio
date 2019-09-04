@@ -4,6 +4,11 @@
 
 This repo demonstrates how to use the Vision AI Developer Kit (VAI DevKit) to develop a Neural Network model to process audio sounds.  For information on using Vision on the VAI DevKit, refer to [Vision AI DevKit main page](http://aka.ms/visionaidevkit).
 
+## Solution Videos
+
+[14 minute video summarizing the solution](https://kevinsayazstorage.blob.core.windows.net/public/vaidk-audio-github walkthrough.mp4)
+[12 minute video of building the model](https://kevinsayazstorage.blob.core.windows.net/public/videoaisolutionwalkthrough.mp4)
+
 ## Background
 
 Processing video or images through a Neural Network involves converting images, most commonly JPEG, into a NumPy array where features can be extracted and calculated.  At the hightest level, most Vision AI projects include this with added capabilities.
