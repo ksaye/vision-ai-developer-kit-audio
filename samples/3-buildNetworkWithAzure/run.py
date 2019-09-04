@@ -17,7 +17,7 @@ from azure.storage.blob import BlockBlobService
 from keras_audio.library.cifar10 import Cifar10AudioClassifier
 
 azureStorgeAccountName = 'kevinsayazstorage'
-azureStorageKeyName = '8H5YxVfx5ZGbepjPQ+BZDdygOQAPB4S+a+vQobYD+3Q9h/U0xLEkOkDLu7/Xz3GNeq91Yj4h8JhoHvaXvHgxiA=='
+azureStorageKeyName = '8H5YxVREMOVEDoHvaXvHgxiA=='
 azureStorageContainer = 'completedmodel2'
 labels = [100,90,80,70,60,50,40,30,20,10]
 parser = argparse.ArgumentParser()
