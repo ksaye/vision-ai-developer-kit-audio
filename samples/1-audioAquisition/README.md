@@ -105,6 +105,10 @@ docker run audio
 
 ```
 
+## (option 3) Use my sample files
+
+You can download the sample files that are demonstrated in the video here: [3876 15 second wave file](https://kevinsayazstorage.blob.core.windows.net/public/3876samplewavefiles.zip)
+
 ## Verifying data is being collected
 
 Log into the [Azure Portal](http://portal.azure.com) to verify your .WAV files are being uploaded into the named container during the allowed hours.
