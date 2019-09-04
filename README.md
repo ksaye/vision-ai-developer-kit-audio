@@ -6,8 +6,8 @@ This repo demonstrates how to use the Vision AI Developer Kit (VAI DevKit) to de
 
 ## Solution Videos
 
-[14 minute video summarizing the solution](https://kevinsayazstorage.blob.core.windows.net/public/vaidk-audio-github walkthrough.mp4)
-[12 minute video of building the model](https://kevinsayazstorage.blob.core.windows.net/public/videoaisolutionwalkthrough.mp4)
+* [14 minute video summarizing the solution](https://kevinsayazstorage.blob.core.windows.net/public/vaidk-audio-github%20walkthrough.mp4)
+* [12 minute video of building the model](https://kevinsayazstorage.blob.core.windows.net/public/videoaisolutionwalkthrough.mp4)
 
 ## Background
 
