@@ -21,7 +21,7 @@ labels | [100,90,80,70,60,50,40,30,20,10] | the labels of the files
 
 at a command prompt run:
 ```bash
-python lableFiles.py
+python labelFiles.py
 ```
 
 or in Visual Studio Code with the file open, right click in the center of the Editor window and select Run Python File in Terminal
