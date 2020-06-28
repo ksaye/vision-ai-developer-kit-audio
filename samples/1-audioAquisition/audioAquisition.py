@@ -1,5 +1,6 @@
 # based off: https://kevinsaye.wordpress.com/2018/11/01/audio-classification-training-in-23-lines-of-code/ which includes
 import time, os, sys, datetime
+# pip install azure-storage-blob==0.37.1
 from azure.storage.blob import BlockBlobService
 
 # change these variables as needed
