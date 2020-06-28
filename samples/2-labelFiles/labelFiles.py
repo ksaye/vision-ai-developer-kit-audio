@@ -1,5 +1,5 @@
 import sys, datetime
-# pip install azure-storage
+# pip install azure-storage-blob==0.37.1
 from azure.storage.blob import BlockBlobService
 
 # change these variables as needed
